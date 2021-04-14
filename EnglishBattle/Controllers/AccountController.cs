@@ -69,8 +69,8 @@ namespace EnglishBattle.Controllers
 
             if (joueur != null)
             {
-                Session["utilisateur"] = joueur;
-                ViewBag.User = joueur.prenom;
+                Session["utilisateurId"] = joueur.id;
+                Session["utilisateurName"] = joueur.prenom + " " + joueur.nom;
 
                 return RedirectToAction("Index", "Home");
             }

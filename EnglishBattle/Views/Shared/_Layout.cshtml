@@ -21,9 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (Session["utilisateur"] != null)
+                    @if (Session["utilisateurId"] != null)
                     {
-                        <li style="color:azure">Hello @ViewBag.User</li>
+                        <li style="color: white">Hello @Session["utilisateurName"]</li>
                         <li id="logout">@Html.ActionLink("Déconnexion", "SessionEnd", "Account")</li>
                     }
                     else
