@@ -1,0 +1,7 @@
+App.config
+Web.config
+.vs
+EnglishBattle/obj/
+EnglishBattle/bin/
+DbConnect/bin/
+DbConnect/obj/
