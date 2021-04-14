@@ -72,7 +72,7 @@ namespace EnglishBattle.Controllers
                 Session["utilisateurId"] = joueur.id;
                 Session["utilisateurName"] = joueur.prenom + " " + joueur.nom;
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Game", "Game");
             }
             else
             {
