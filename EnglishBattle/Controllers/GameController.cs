@@ -5,19 +5,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EnglishBattle.Models;
 
 namespace EnglishBattle.Controllers
 {
     public class GameController : Controller
     {
-        public ActionResult Game()
+        public ActionResult Game(GameViewModel model)
         {
+            // Liste des verbes
             List<Verbe> verbes;
+
+            // Si la variable de session "verbes" est null
             if (Session["verbes"] == null) {
+                // Contient le nombre de fois ou le joueur trouve les verbes correspondants
+                Session["gameWinCount"] = 0;
+                Session["errorCount"] = 0;
+                // Récupère les verbes afin d'initier le jeu
                 verbes = new VerbeServices(new DbConnect.EnglishBattleEntities()).GetVerbes();
             } else {
+                if (model.ParticipePasse == Session["participePasse"].ToString() && model.Preterit == Session["preterit"].ToString())
+                {
+                    Session["gameWinCount"] = (int)Session["gameWinCount"] + 1;
+                }
+                else
+                {
+                    Session["errorCount"] = (int)Session["errorCount"] + 1;
+                }
+                
                 verbes = (List<Verbe>) Session["verbes"];
             }
+
+            // TODO - game end ? Redirection ?
 
             // Genere un chiffre aleatoire pour le verbe choisi
             int index = new Random().Next(verbes.Count() - 1);
@@ -25,11 +44,13 @@ namespace EnglishBattle.Controllers
             Verbe choosenVerb = verbes[index];
             // Supprimer le verbe choisi
             verbes.Remove(choosenVerb);
-            Session["verbes"] = verbes;
 
+            // Ajoute aux variables de session les verbes correspondants
+            Session["verbes"] = verbes;
             ViewBag.infinitif = choosenVerb.baseVerbale;
-            ViewBag.preterit = choosenVerb.preterit;
-            ViewBag.participePasse = choosenVerb.participePasse;
+            // Les verbes sont inversés
+            Session["preterit"] = choosenVerb.participePasse;
+            Session["participePasse"] = choosenVerb.preterit;
 
             return View();
         }

@@ -31,10 +31,15 @@
                 @Html.ValidationMessageFor(model => model.ParticipePasse, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div>
+            <p>Preterit : @Session["preterit"]</p>
+            <p>Participe passé : @Session["participePasse"]</p>
+            <p>Game win : @Session["gameWinCount"]</p>
+            <p>Error count : @Session["errorCount"]</p>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" OnClientClick="this.form.reset();return false;" class="btn btn-default" />
             </div>
         </div>
     </div>

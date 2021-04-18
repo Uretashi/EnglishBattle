@@ -43,8 +43,6 @@ namespace EnglishBattle.Controllers
 
                 Joueur joueur = new Joueur();
 
-                //int CodePostal = Int32.Parse(model.VilleCodePostal);
-
                 //Ajout compte BDD
                 joueur.nom = model.Nom;
                 joueur.prenom = model.Prenom;
