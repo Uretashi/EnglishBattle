@@ -32,6 +32,7 @@ namespace EnglishBattle.Controllers
                 {
                     Session["errorCount"] = (int)Session["errorCount"] + 1;
                 }
+                ModelState.Clear();
                 
                 verbes = (List<Verbe>) Session["verbes"];
             }
