@@ -1,6 +1,6 @@
 // TODO:
-// - Afficher un message de félicitation après 5 bonnes réponses
-// - Si toutes les bonnes réponses => page de fin avec félicitation => new game ? oui : non
+// - Si toutes les bonnes réponses => page de fin avec félicitation => new game ? oui : non -> Session['True']
 // - Si réponse incorrect ou temps limite écoulé, fin de partie => new game ? oui : non
+// - Home page
 // Bonus:
 // - Hall of fame

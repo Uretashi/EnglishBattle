@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "EndGame";
+}
+
+<h2>Fin de jeu</h2>
+
+<div>
+    @if (Session["win"] != null && (bool)Session["win"] == true)
+    {
+        <h2>Félicitation !</h2>
+        <div>
+            <p>Vous avez eu juste à toutes les questions (ça se voit que vous maitriser l'anglais ^^) !</p>
+            <p>Souhaitez vous rejouer ?</p>
+            <div>
+                <p>@Html.ActionLink("Oui !", "Game", "Game")</p>
+                <p>@Html.ActionLink("Non (vous serez déconnecté)", "SessionEnd", "Account")</p>
+            </div>
+
+        </div>
+    } 
+    else
+    {
+        <h2>Vous avez perdu :/</h2>
+        <div>
+            <p>Souhaitez vous rejouer ?</p>
+            <div>
+                <a>@Html.ActionLink("Oui !", "Game", "Game")</a>
+                <a>@Html.ActionLink("Non (vous serez déconnecté)", "SessionEnd", "Account")</a>
+            </div>
+        </div>
+    }
+</div>

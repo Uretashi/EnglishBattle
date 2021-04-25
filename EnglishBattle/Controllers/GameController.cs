@@ -39,7 +39,10 @@ namespace EnglishBattle.Controllers
                 }
                 else
                 {
-                    Session["errorCount"] = (int)Session["errorCount"] + 1;
+                    Session.Remove("verbes");
+                    Session.Remove("preterit");
+                    Session.Remove("participePasse");
+                    return RedirectToAction("Endgame", "Game");
                 }
 
                 ModelState.Clear();
@@ -47,7 +50,11 @@ namespace EnglishBattle.Controllers
                 verbes = (List<Verbe>) Session["verbes"];
             }
 
-            // TODO - game end ? Redirection ?
+            if(verbes.Count() == 0)
+            {
+                Session["win"] = true;
+                return RedirectToAction("Endgame", "Game");
+            }
 
             // Genere un chiffre aleatoire pour le verbe choisi
             int index = new Random().Next(verbes.Count() - 1);
@@ -63,6 +70,11 @@ namespace EnglishBattle.Controllers
             Session["preterit"] = choosenVerb.participePasse;
             Session["participePasse"] = choosenVerb.preterit;
 
+            return View();
+        }
+
+        public ActionResult Endgame()
+        {
             return View();
         }
     }

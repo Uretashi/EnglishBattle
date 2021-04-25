@@ -70,6 +70,10 @@ namespace EnglishBattle.Controllers
                 Session["utilisateurId"] = joueur.id;
                 Session["utilisateurName"] = joueur.prenom + " " + joueur.nom;
 
+                Session.Remove("verbes");
+                Session.Remove("preterit");
+                Session.Remove("participePasse");
+
                 return RedirectToAction("Game", "Game");
             }
             else

@@ -42,8 +42,7 @@
 <div>
     <p>Preterit : @Session["preterit"]</p>
     <p>Participe passé : @Session["participePasse"]</p>
-    <p>Game win : @Session["gameWinCount"]</p>
-    <p>Error count : @Session["errorCount"]</p>
+    <p>Victoire : @Session["gameWinCount"]</p>
 </div>
 
 
@@ -62,7 +61,7 @@
             display.textContent = "00" + ":" + seconds;
 
             if (--timer < 0) {
-                window.location='@Url.Action("Index","Home")'
+                window.location='@Url.Action("EndGame","Game")'
             }
         }, 1000);
     }
