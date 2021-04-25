@@ -13,6 +13,11 @@ namespace EnglishBattle.Controllers
     {
         public ActionResult Game(GameViewModel model)
         {
+            if (Session["utilisateurId"] == null)
+            {
+                Response.Redirect("/");
+            }
+
             // Liste des verbes
             List<Verbe> verbes;
 
@@ -27,11 +32,16 @@ namespace EnglishBattle.Controllers
                 if (model.ParticipePasse == Session["participePasse"].ToString() && model.Preterit == Session["preterit"].ToString())
                 {
                     Session["gameWinCount"] = (int)Session["gameWinCount"] + 1;
+                    if ((int)Session["gameWinCount"] % 5 == 0)
+                    {
+                        ViewBag.congratulation = "5 réponses valides en plus !";
+                    } 
                 }
                 else
                 {
                     Session["errorCount"] = (int)Session["errorCount"] + 1;
                 }
+
                 ModelState.Clear();
                 
                 verbes = (List<Verbe>) Session["verbes"];
