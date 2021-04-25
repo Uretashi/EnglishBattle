@@ -12,7 +12,7 @@
 
     <div class="form-horizontal">
         <h4>@ViewBag.congratulation</h4>
-        <h3>Temps restant : <span id="countdownTimer"></span></h3>
+        <h3>Temps restant : <span id="countdownTimer">01:00</span></h3>
         <h3>@ViewBag.infinitif</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -69,7 +69,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         window.onload = () => {
             htmlTag = document.getElementById('countdownTimer');
-            countdown(60, htmlTag);
+            countdown(59, htmlTag);
         };
     });
 
